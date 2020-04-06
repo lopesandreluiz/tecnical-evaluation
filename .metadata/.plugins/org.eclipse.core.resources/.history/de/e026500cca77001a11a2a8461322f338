@@ -1,0 +1,18 @@
+package br.com.cast.evaluation.payload;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CategoryPayload {
+	
+	@ApiModelProperty(value = "Identificador da Categoria", required = true)
+	private Long id;
+	
+	@ApiModelProperty(value = "Descrição da categoria", required = true)
+	private String description;
+
+}

@@ -1,0 +1,27 @@
+package br.com.cast.evaluation.model;
+
+import java.time.LocalDate;
+
+import javax.persistence.Entity;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+public class Course {
+	
+	private Long id;
+	
+	private String descriptionSubject;
+	
+	private LocalDate initialDate;
+	
+	private LocalDate finalDate;
+	
+	private Integer numberStudents;
+	
+	private Category category;
+
+}

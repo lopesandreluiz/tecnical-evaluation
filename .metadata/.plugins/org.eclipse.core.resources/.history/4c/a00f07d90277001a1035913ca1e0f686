@@ -1,0 +1,47 @@
+package br.com.cast.evaluation.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.cast.evaluation.payload.CoursePayload;
+import br.com.cast.evaluation.response.CourseResponse;
+import br.com.cast.evaluation.service.CourseService;
+
+@RestController
+@RequestMapping("/api/cast")
+public class CourseController {
+	
+	@Autowired
+	private CourseService courseService;
+	
+	@PostMapping(path = "/save")
+	public ResponseEntity<CourseResponse> saveCourse(@RequestBody CoursePayload coursePayload){
+		
+	}
+	
+	@PutMapping(path = "/alter/{courseId}")
+	public ResponseEntity<CourseResponse> updateCourse(@RequestBody CoursePayload coursePayload, @PathVariable Long courseId){
+		
+	}
+	
+	@DeleteMapping(path = "/delete/{courseId}")
+	public ResponseEntity<CourseResponse> deleteCourse(@PathVariable Long courseId){
+		
+	}
+	
+	@GetMapping(path = "/findAll")
+	public ResponseEntity<List<CourseResponse>> getAllCourses(){
+		
+	}
+
+}

@@ -1,0 +1,65 @@
+package br.com.cast.evaluation.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.cast.evaluation.model.Course;
+import br.com.cast.evaluation.payload.CoursePayload;
+import br.com.cast.evaluation.repository.CourseRepository;
+import br.com.cast.evaluation.response.CourseResponse;
+
+@Service
+public class CourseService {
+
+	@Autowired
+	private CourseRepository courseRepository;
+
+	public CourseResponse saveCourse(CoursePayload payload) {
+		
+		return getCourseResponse(courseRepository.save(getCourse(payload)));
+	}
+	
+	public CourseResponse updateCourse(CoursePayload payload, Long courseId) {
+		
+		Optional<Course> course = courseRepository.findById(payload.getId());
+		
+		if(course.isPresent()) {
+			payload.setId(courseId);
+			return saveCourse(payload);		
+		}else {
+			throw 
+		}
+	}
+	
+	
+	
+	private Course getCourse(CoursePayload payload) {
+		
+		return Course.builder()
+				  .id(payload.getId())
+				  .descriptionSubject(payload.getDescriptionSubject())
+				  .initialDate(payload.getInitialDate())
+				  .finalDate(payload.getFinalDate())
+				  .numberStudents(payload.getNumberStudents())
+				  .category(payload.getCategory()).build();
+	}
+	
+	private CourseResponse getCourseResponse(Course course) {
+		
+		return CourseResponse.builder()
+				  .id(course.getId())
+				  .descriptionSubject(course.getDescriptionSubject())
+				  .initialDate(course.getInitialDate())
+				  .finalDate(course.getFinalDate())
+				  .numberStudents(course.getNumberStudents())
+				  .category(course.getCategory()).build();
+	}
+
+	
+	
+	
+	
+
+}

@@ -1,0 +1,23 @@
+package br.com.cast.evaluation.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.cast.evaluation.model.Category;
+import br.com.cast.evaluation.repository.CategoryRepository;
+
+@Service
+public class CategoryService {
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
+	
+	
+	
+	public void saveCategory(Category entity) {
+		
+		categoryRepository.save(entity);
+	}
+	
+
+}

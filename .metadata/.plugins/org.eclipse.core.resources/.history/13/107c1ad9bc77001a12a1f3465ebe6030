@@ -1,0 +1,32 @@
+package br.com.cast.evaluation.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+ 
+
+@SuppressWarnings({"unchecked","rawtypes"})
+@ControllerAdvice
+public class CastExceptionHandler extends ResponseEntityExceptionHandler {
+	
+	@ExceptionHandler(CourseNotFoundException.class)
+    public final ResponseEntity<?> handleUserNotFoundException() {
+        
+		return new ResponseEntity("Curso n&atilde;o encontrado", HttpStatus.NOT_FOUND);
+    }
+	
+	@ExceptionHandler(UsedPeriodException.class)
+    public final ResponseEntity<?> handleUsedPeriodoException() {
+       
+        return new ResponseEntity("Existem cursos planejados dentro do per&iacute;odo informado", HttpStatus.CONFLICT);
+    }
+	
+	@ExceptionHandler(InitialDateInvalidException.class)
+    public final ResponseEntity<?> handleInitialDateInvalidException() {
+     
+		return new ResponseEntity("Data de in&iacute;cio informada &eacute; menor que a data atual", HttpStatus.CONFLICT);
+    }
+
+}

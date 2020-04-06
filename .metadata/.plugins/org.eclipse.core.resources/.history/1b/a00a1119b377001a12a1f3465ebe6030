@@ -1,0 +1,26 @@
+package br.com.cast.evalution.enums;
+
+public enum CategoryEnum {
+	
+	BEHAVIORAL(1,"Comportamental"),
+	PROGRAMMING(2,"Programação"),
+	QUALITY(3, "Qualidade"),
+	LAW_SUIT(4, "Processos");
+	
+	private final Integer code;
+	private final String description;
+	
+	CategoryEnum(Integer code, String description) {
+		this.code = code;
+		this.description = description;
+	}
+
+	public Integer getCode() {
+		return code;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+}

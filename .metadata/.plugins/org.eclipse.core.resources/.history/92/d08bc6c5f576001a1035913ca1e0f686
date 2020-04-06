@@ -1,0 +1,11 @@
+package br.com.cast.evaluation.exception;
+
+public class CourseNotFoundException extends RuntimeException {
+	
+	private static final long serialVersionUID = -5220996581133717809L;
+
+	public CourseNotFoundException(String exception) {
+        super(exception);
+    }
+	
+}

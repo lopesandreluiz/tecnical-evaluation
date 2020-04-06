@@ -1,0 +1,34 @@
+package br.com.cast.evaluation.payload;
+
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CoursePayload {
+	
+	@ApiModelProperty(value = "Código identificador do curso")
+	private Long id;
+	
+	@ApiModelProperty(value = "Descrição do assunto", required = true)
+	private String descriptionSubject;
+	
+	@ApiModelProperty(value = "Data de inicio do curso", required = true)
+	private LocalDate initialDate;
+	
+	@ApiModelProperty(value = "Data de fim do curso", required = true)
+	private LocalDate finalDate;
+	
+	@ApiModelProperty(value = "Quantidade de alunos por turma")
+	private Integer numberStudents;
+	
+	@ApiModelProperty(value = "Categoria do curso", required = true)
+	private CategoryPayload category;
+
+}
