@@ -1,5 +1,0 @@
-package br.com.cast.evaluation.exception;
-
-public class CourseNotFoundException {
-
-}

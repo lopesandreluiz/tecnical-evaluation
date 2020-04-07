@@ -1,9 +1,0 @@
-package br.com.cast.evaluation.exception;
-
-public class CourseNotFoundException extends RuntimeException {
-	
-	public CourseNotFoundException(String exception) {
-        super(exception);
-    }
-	
-}

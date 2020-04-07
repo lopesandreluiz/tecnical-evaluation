@@ -1,7 +1,0 @@
-server.port = 8090
-
-initial.date.invalid=Data de in&iacute;cio informada &eacute; menor que a data atual
-used.period.planing=Existem cursos planejados dentro do per&iacute;odo informado
-course.notfound=Curso n&atilde;o encontrado
-
-

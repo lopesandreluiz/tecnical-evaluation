@@ -1,8 +1,0 @@
-package br.com.cast.evaluation.model;
-
-import javax.persistence.Entity;
-
-@Entity
-public class Course {
-
-}

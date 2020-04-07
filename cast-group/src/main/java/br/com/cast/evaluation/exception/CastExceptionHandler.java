@@ -36,5 +36,11 @@ public class CastExceptionHandler extends ResponseEntityExceptionHandler {
      
 		return new ResponseEntity(messageSource.getMessage("initial.date.invalid",null, Locale.getDefault()), HttpStatus.CONFLICT);
     }
+	
+	@ExceptionHandler(CategoryNotValidException.class)
+    public final ResponseEntity<?> handleCategoryNotValidException() {
+     
+		return new ResponseEntity(messageSource.getMessage("category.notfound",null, Locale.getDefault()), HttpStatus.NOT_FOUND);
+    }
 
 }

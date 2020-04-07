@@ -66,12 +66,27 @@ public class CourseService {
 			throw new InitialDateInvalidException();
 		}
 		
-		List<Course> listCourse = courseRepository.findByInitialDateGreaterThanEqualAndFinalDateLessThanEqual(
-					payload.getInitialDate(), payload.getFinalDate());
-		
+		List<Course> listCourse = StreamSupport.stream(courseRepository.findAll().spliterator(), false)
+				.filter(course -> (validInitialDate(course, payload) && validFinalDate(course, payload)))
+				.collect(Collectors.toList());
+					
 		if(!listCourse.isEmpty()) {
 			throw new UsedPeriodException();
 		}
+	}
+	
+	private Boolean validInitialDate(Course course, CoursePayload payload) {
+		
+		return ((payload.getInitialDate().equals(course.getInitialDate()) || payload.getInitialDate().isAfter(course.getInitialDate())) 
+					&& (payload.getInitialDate().equals(course.getFinalDate()) || payload.getInitialDate().isBefore(course.getFinalDate())));
+		
+	}
+	
+	private Boolean validFinalDate(Course course, CoursePayload payload) {
+		
+		return ((payload.getFinalDate().equals(course.getInitialDate()) || payload.getFinalDate().isAfter(course.getInitialDate())) 
+				&& (payload.getFinalDate().equals(course.getFinalDate()) || payload.getFinalDate().isBefore(course.getFinalDate())));
+		
 	}
 	
 	
