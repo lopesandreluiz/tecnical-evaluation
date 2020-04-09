@@ -9,7 +9,6 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.cast.evaluation.exception.CategoryNotValidException;
 import br.com.cast.evaluation.exception.CourseNotFoundException;
 import br.com.cast.evaluation.exception.InitialDateInvalidException;
 import br.com.cast.evaluation.exception.UsedPeriodException;
@@ -31,8 +30,6 @@ public class CourseService {
 	
 	
 	public CourseResponse saveCourse(CoursePayload payload) {
-		
-		categoryService.loadCategory();
 		
 		validationCourses(payload);
 		
@@ -104,11 +101,7 @@ public class CourseService {
 	
 	private Course getCourse(CoursePayload payload) {
 		
-		Optional<Category> category = categoryService.getCategoryId(payload.getCategoryId());
-		
-		if(!category.isPresent()) {
-			throw new CategoryNotValidException();
-		}
+		CategoryResponse category = categoryService.getCategoryId(payload.getCategoryId());
 		
 		return Course.builder()
 				  .id(payload.getId())
@@ -116,8 +109,13 @@ public class CourseService {
 				  .initialDate(payload.getInitialDate())
 				  .finalDate(payload.getFinalDate())
 				  .numberStudents(payload.getNumberStudents())
-				  .category(category.get())
+				  .category(Category.builder()
+						  .id(category.getId())
+						  .description(category.getDescription())
+						  .build())
 				  .build();
+						  
+				  
 	}
 	
 	private CourseResponse getCourseResponse(Course course) {

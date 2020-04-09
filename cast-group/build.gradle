@@ -16,16 +16,29 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'com.h2database:h2'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testImplementation('org.springframework.boot:spring-boot-starter-test') 
 	compileOnly 'org.projectlombok:lombok:1.18.12'
 	annotationProcessor 'org.projectlombok:lombok:1.18.12'
-	
 	testCompileOnly 'org.projectlombok:lombok:1.18.12'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 	compile('io.springfox:springfox-swagger2:2.9.2')
     compile('io.springfox:springfox-swagger-ui:2.9.2')
+  	testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.1'
+  	testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.3.3'
+  	testCompile group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.6.1'
+  	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0.rc1'
+  	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.11.0.rc1'
+  	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.0.rc1'
+  	compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-parameter-names', version: '2.11.0.rc1'
+  	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.11.0.rc1'
+  	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.11.0.rc1'
+  	
+  	compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.2.6.RELEASE', ext: 'pom'
+  	
+  	compile group: 'io.micronaut', name: 'micronaut-inject-java', version: '2.0.0.M2'
+  	testCompile group: 'io.micronaut.test', name: 'micronaut-test-junit5', version: '1.1.5'
+  	
+ 
 }
 
 test {

@@ -28,7 +28,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 
   private ApiInfo metaData() {
     return new ApiInfoBuilder()
-        .title("Cursos para turmas de formaçãa da CastGroup")
+        .title("Cursos para turmas de formação da CastGroup")
         .description("\"Spring Boot REST API \"")
         .version("1.0.0")
         .license("Apache License Version 2.0")

@@ -22,35 +22,37 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/cast")
-@Api(value = "Cast")
+@Api(value = "Cast-Cursos")
 public class CourseController {
-	
+
 	@Autowired
 	private CourseService courseService;
-	
+
 	@ApiOperation(value = "Incluir novos cursos")
 	@PostMapping(path = "/save")
-	public ResponseEntity<CourseResponse> saveCourse(@RequestBody CoursePayload payload){
-		
+	public ResponseEntity<CourseResponse> saveCourse(@RequestBody CoursePayload payload) {
+
 		return new ResponseEntity<CourseResponse>(courseService.saveCourse(payload), HttpStatus.CREATED);
 	}
-	
+
 	@ApiOperation(value = "Alterar dados do Curso")
 	@PutMapping(path = "/alter/{courseId}")
-	public ResponseEntity<CourseResponse> updateCourse(@RequestBody CoursePayload payload, @PathVariable Long courseId){
-		
+	public ResponseEntity<CourseResponse> updateCourse(@RequestBody CoursePayload payload,
+			@PathVariable Long courseId) {
+
 		return new ResponseEntity<CourseResponse>(courseService.updateCourse(payload, courseId), HttpStatus.OK);
 	}
-	
+
 	@ApiOperation(value = "Excluir um curso")
 	@DeleteMapping(path = "/delete/{courseId}")
-	public void deleteCourse(@PathVariable Long courseId){
+	public ResponseEntity<Object> deleteCourse(@PathVariable Long courseId) {
 		courseService.deleteCourse(courseId);
+		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
-	
+
 	@ApiOperation(value = "Listar todos os cursos cadastrados")
 	@GetMapping(path = "/findAll")
-	public ResponseEntity<List<CourseResponse>> getAllCourses(){
+	public ResponseEntity<List<CourseResponse>> getAllCourses() {
 		return new ResponseEntity<List<CourseResponse>>(courseService.getAllCourses(), HttpStatus.OK);
 	}
 
