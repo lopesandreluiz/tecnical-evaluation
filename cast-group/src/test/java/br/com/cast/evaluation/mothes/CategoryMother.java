@@ -5,14 +5,14 @@ import br.com.cast.evaluation.response.CategoryResponse;
 
 public class CategoryMother {
 
-	public CategoryResponse getCategoryResponse() {
+	public static CategoryResponse getCategoryResponse() {
 
 		return CategoryResponse.builder().id(1L)
 				.description("teste").build();
 
 	}
 	
-	public Category getCategory() {
+	public static Category getCategory() {
 
 		return Category.builder().id(1L)
 				.description("teste").build();

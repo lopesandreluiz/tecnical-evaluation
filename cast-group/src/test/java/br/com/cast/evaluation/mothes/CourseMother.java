@@ -17,7 +17,7 @@ import br.com.cast.evaluation.response.CourseResponse;
 
 public class CourseMother {
 
-	public CourseResponse getCourseResponse() {
+	public static CourseResponse getCourseResponse() {
 
 		return CourseResponse.builder().id(1L)
 				.category(CategoryResponse.builder().id(1l).description("Teste").build())
@@ -26,7 +26,7 @@ public class CourseMother {
 
 	}
 
-	public List<CourseResponse> getListCoursesResponse() {
+	public static List<CourseResponse> getListCoursesResponse() {
 
 		List<CourseResponse> list = new ArrayList<>();
 		list.add(getCourseResponse());
@@ -34,7 +34,7 @@ public class CourseMother {
 
 	}
 
-	public CoursePayload getCoursePayload() {
+	public static CoursePayload getCoursePayload() {
 
 		CoursePayload payload = new CoursePayload();
 		payload.setDescriptionSubject("Teste");
@@ -54,7 +54,7 @@ public class CourseMother {
 		return mapper;
 	}
 	
-	public Course getCourse() {
+	public static Course getCourse() {
 
 		return Course.builder().id(1L).descriptionSubject("Teste").initialDate(LocalDate.now())
 				.finalDate(LocalDate.now()).category(Category.builder().id(1l).description("Teste").build())
@@ -62,7 +62,7 @@ public class CourseMother {
 
 	}
 	
-	public Course getCoursePersistence() {
+	public static Course getCoursePersistence() {
 
 		return Course.builder().descriptionSubject("Teste").initialDate(LocalDate.now())
 				.finalDate(LocalDate.now()).category(Category.builder().id(1l).description("teste").build())
@@ -70,7 +70,7 @@ public class CourseMother {
 
 	}
 	
-	public List<Course> getListCourses() {
+	public static List<Course> getListCourses() {
 
 		List<Course> list = new ArrayList<>();
 		list.add(getCourse());

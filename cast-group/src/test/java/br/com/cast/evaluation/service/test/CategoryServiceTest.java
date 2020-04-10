@@ -29,13 +29,11 @@ public class CategoryServiceTest {
 	@Mock
 	private CategoryRepository categoryRepository;
 
-	private CategoryMother categoryMother = new CategoryMother();
-
 	@Test
 	public void loadCategoryTest() {
 
 		when(categoryRepository.save(Category.builder().description("Comportamental").build()))
-				.thenReturn(categoryMother.getCategory());
+				.thenReturn(CategoryMother.getCategory());
 
 		service.loadCategory();
 
@@ -55,7 +53,7 @@ public class CategoryServiceTest {
 	@Test
 	public void getCategoryIdTest() {
 
-		when(categoryRepository.findById(1L)).thenReturn(Optional.of(categoryMother.getCategory()));
+		when(categoryRepository.findById(1L)).thenReturn(Optional.of(CategoryMother.getCategory()));
 
 		CategoryResponse response = service.getCategoryId(1L);
 

@@ -21,7 +21,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/api/cast")
+@RequestMapping("/course")
 @Api(value = "Cast-Cursos")
 public class CourseController {
 

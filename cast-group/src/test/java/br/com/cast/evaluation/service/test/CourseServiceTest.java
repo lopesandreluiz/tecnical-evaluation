@@ -36,37 +36,34 @@ public class CourseServiceTest {
 	@Mock
 	private CategoryService categoryService;
 
-	private CourseMother courseMother = new CourseMother();
-
-	private CategoryMother categoryMother = new CategoryMother();
 
 	@Test(expected = InitialDateInvalidException.class)
 	public void saveCourseInitialDateInvalidTest() {
 
-		CoursePayload coursePayload = courseMother.getCoursePayload();
+		CoursePayload coursePayload = CourseMother.getCoursePayload();
 		coursePayload.setInitialDate(LocalDate.now().minusDays(1));
 
 		CourseResponse response = service.saveCourse(coursePayload);
 
 		assertNotNull(response);
-		assertEquals(response.getDescriptionSubject(), courseMother.getCoursePayload().getDescriptionSubject());
+		assertEquals(response.getDescriptionSubject(), CourseMother.getCoursePayload().getDescriptionSubject());
 
-		verify(courseRepository).save(courseMother.getCourse());
+		verify(courseRepository).save(CourseMother.getCourse());
 	}
 
 	@Test
 	public void saveCourseTest() {
 
-		when(categoryService.getCategoryId(1l)).thenReturn(categoryMother.getCategoryResponse());
+		when(categoryService.getCategoryId(1l)).thenReturn(CategoryMother.getCategoryResponse());
 		
-		when(courseRepository.save(courseMother.getCoursePersistence())).thenReturn(courseMother.getCourse());
+		when(courseRepository.save(CourseMother.getCoursePersistence())).thenReturn(CourseMother.getCourse());
 
-		CourseResponse response = service.saveCourse(courseMother.getCoursePayload());
+		CourseResponse response = service.saveCourse(CourseMother.getCoursePayload());
 
 		assertNotNull(response);
-		assertEquals(response.getDescriptionSubject(), courseMother.getCoursePayload().getDescriptionSubject());
+		assertEquals(response.getDescriptionSubject(), CourseMother.getCoursePayload().getDescriptionSubject());
 
-		verify(courseRepository).save(courseMother.getCoursePersistence());
+		verify(courseRepository).save(CourseMother.getCoursePersistence());
 	}
 	
 	@Test(expected = CourseNotFoundException.class)
@@ -74,40 +71,40 @@ public class CourseServiceTest {
 		
 		when(courseRepository.findById(1L)).thenReturn(Optional.empty());
 
-		CourseResponse response = service.updateCourse(courseMother.getCoursePayload(), 1L);
+		CourseResponse response = service.updateCourse(CourseMother.getCoursePayload(), 1L);
 
 		assertNotNull(response);
-		assertEquals(response.getDescriptionSubject(), courseMother.getCoursePayload().getDescriptionSubject());
+		assertEquals(response.getDescriptionSubject(), CourseMother.getCoursePayload().getDescriptionSubject());
 
-		verify(courseRepository).save(courseMother.getCoursePersistence());
+		verify(courseRepository).save(CourseMother.getCoursePersistence());
 	}
 	
 	@Test
 	public void updateCourseTest() {
 
-		when(categoryService.getCategoryId(1l)).thenReturn(categoryMother.getCategoryResponse());
+		when(categoryService.getCategoryId(1l)).thenReturn(CategoryMother.getCategoryResponse());
 		
-		when(courseRepository.findById(1L)).thenReturn(Optional.of(courseMother.getCoursePersistence()));
+		when(courseRepository.findById(1L)).thenReturn(Optional.of(CourseMother.getCoursePersistence()));
 		
-		when(courseRepository.save(courseMother.getCoursePersistence())).thenReturn(courseMother.getCourse());
+		when(courseRepository.save(CourseMother.getCoursePersistence())).thenReturn(CourseMother.getCourse());
 
-		CourseResponse response = service.updateCourse(courseMother.getCoursePayload(), 1L);
+		CourseResponse response = service.updateCourse(CourseMother.getCoursePayload(), 1L);
 
 		assertNotNull(response);
-		assertEquals(response.getDescriptionSubject(), courseMother.getCoursePayload().getDescriptionSubject());
+		assertEquals(response.getDescriptionSubject(), CourseMother.getCoursePayload().getDescriptionSubject());
 
 		verify(courseRepository).findById(1L);
-		verify(courseRepository).save(courseMother.getCoursePersistence());
+		verify(courseRepository).save(CourseMother.getCoursePersistence());
 	}
 	
 	@Test
 	public void deleteCourseTest() {
 		
-		when(courseRepository.findById(1L)).thenReturn(Optional.of(courseMother.getCourse()));
+		when(courseRepository.findById(1L)).thenReturn(Optional.of(CourseMother.getCourse()));
 
 		service.deleteCourse(1L);
 
-		verify(courseRepository).delete(courseMother.getCourse());
+		verify(courseRepository).delete(CourseMother.getCourse());
 		verify(courseRepository).findById(1L);
 	}
 	

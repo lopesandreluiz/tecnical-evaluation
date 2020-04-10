@@ -33,9 +33,6 @@ public class CourseControllerTest {
 
 	@Mock
 	private CategoryService categoryService;
-	
-	
-	private CourseMother loadObjects = new CourseMother();
 
 	@Before
 	public void setUp() {
@@ -43,18 +40,17 @@ public class CourseControllerTest {
 		mvc = MockMvcBuilders.standaloneSetup(courseController).build();
 	}
 
-	@SuppressWarnings("static-access")
 	@Test
 	public void saveCourseTest() throws Exception {
 
-		String json = loadObjects.makeMapper().writeValueAsString(loadObjects.getCoursePayload());
+		String json = CourseMother.makeMapper().writeValueAsString(CourseMother.getCoursePayload());
 
-		when(service.saveCourse(loadObjects.getCoursePayload())).thenReturn(loadObjects.getCourseResponse());
+		when(service.saveCourse(CourseMother.getCoursePayload())).thenReturn(CourseMother.getCourseResponse());
 
-		mvc.perform(MockMvcRequestBuilders.post("/api/cast/save").content(json).contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(MockMvcRequestBuilders.post("/course/save").content(json).contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isCreated());
 
-		verify(service).saveCourse(loadObjects.getCoursePayload());
+		verify(service).saveCourse(CourseMother.getCoursePayload());
 
 	}
 
@@ -64,14 +60,14 @@ public class CourseControllerTest {
 
 		Long courseId = 1L;
 
-		String json = loadObjects.makeMapper().writeValueAsString(loadObjects.getCoursePayload());
+		String json = CourseMother.makeMapper().writeValueAsString(CourseMother.getCoursePayload());
 
-		when(service.updateCourse(loadObjects.getCoursePayload(), courseId)).thenReturn(loadObjects.getCourseResponse());
+		when(service.updateCourse(CourseMother.getCoursePayload(), courseId)).thenReturn(CourseMother.getCourseResponse());
 
-		mvc.perform(MockMvcRequestBuilders.put("/api/cast/alter/" + courseId).content(json)
+		mvc.perform(MockMvcRequestBuilders.put("/course/alter/" + courseId).content(json)
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 
-		verify(service).updateCourse(loadObjects.getCoursePayload(), courseId);
+		verify(service).updateCourse(CourseMother.getCoursePayload(), courseId);
 
 	}
 
@@ -80,7 +76,7 @@ public class CourseControllerTest {
 
 		Long courseId = 1L;
 
-		mvc.perform(MockMvcRequestBuilders.delete("/api/cast/delete/" + courseId)
+		mvc.perform(MockMvcRequestBuilders.delete("/course/delete/" + courseId)
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 
 		verify(service).deleteCourse(courseId);
@@ -90,9 +86,9 @@ public class CourseControllerTest {
 	@Test
 	public void getCourseTest() throws Exception {
 
-		when(service.getAllCourses()).thenReturn(loadObjects.getListCoursesResponse());
+		when(service.getAllCourses()).thenReturn(CourseMother.getListCoursesResponse());
 
-		mvc.perform(MockMvcRequestBuilders.get("/api/cast/findAll").contentType(MediaType.APPLICATION_JSON)
+		mvc.perform(MockMvcRequestBuilders.get("/course/findAll").contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 		
 		

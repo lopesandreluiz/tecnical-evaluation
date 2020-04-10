@@ -26,12 +26,12 @@ public class CoursePayload {
 	@ApiModelProperty(value = "Descrição do assunto", required = true)
 	private String descriptionSubject;
 	
-	@ApiModelProperty(value = "Data de inicio do curso", required = true)
+	@ApiModelProperty(value = "Data de inicio do curso", required = true, example = "2020-04-13")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate initialDate;
 	
-	@ApiModelProperty(value = "Data de fim do curso", required = true)
+	@ApiModelProperty(value = "Data de fim do curso", required = true, example = "2020-04-13")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate finalDate;

@@ -1,6 +1,10 @@
 package br.com.cast.evaluation.service;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +25,7 @@ public class CategoryService {
 
 		for (CategoryEnum category : CategoryEnum.values()) {
 
-			categoryRepository
-					.save(Category.builder().description(category.getDescription()).build());
+			categoryRepository.save(Category.builder().description(category.getDescription()).build());
 		}
 	}
 
@@ -36,6 +39,17 @@ public class CategoryService {
 
 		return CategoryResponse.builder().id(category.get().getId()).description(category.get().getDescription())
 				.build();
+	}
+
+	public List<CategoryResponse> getAllCategories() {
+
+		return StreamSupport.stream(categoryRepository.findAll().spliterator(), false).filter(Objects::nonNull)
+				.map(this::getCategoryResponse).collect(Collectors.toList());
+	}
+
+	private CategoryResponse getCategoryResponse(Category category) {
+
+		return CategoryResponse.builder().id(category.getId()).description(category.getDescription()).build();
 	}
 
 }
