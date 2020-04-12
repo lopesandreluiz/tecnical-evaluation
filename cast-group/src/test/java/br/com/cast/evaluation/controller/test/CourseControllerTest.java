@@ -54,7 +54,6 @@ public class CourseControllerTest {
 
 	}
 
-	@SuppressWarnings("static-access")
 	@Test
 	public void alterCourseTest() throws Exception {
 
